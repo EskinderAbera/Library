@@ -1,0 +1,26 @@
+{% extends "mylibrary/layout.html" %} 
+{% load static %}
+
+{% block body %}
+    {% if message %}
+        <div class="error-message"> {{ message }} </div>
+    {% endif %}
+    <form action="{% url 'addauthor' %}" method="POST">
+        {% csrf_token %}
+        <h2 class="page-header">Add Author</h2>
+        <div class="form-row form-width">
+            <div class="form-item">
+              <input type="text" name="first_name" placeholder="enter first name">
+            </div>
+        </div>
+        <div class="form-row form-width" >
+            <div class="form-item">
+              <input type="text" name="last_name" placeholder="enter last name">
+            </div>
+        </div>
+        <div class="author-btn">
+            <a href="{% url 'index' %}" class="btn btn-primary" role="button" aria-disabled="true">Cancel</a>
+            <input type="submit" class="btn btn-primary"/> 
+        </div> 
+    </form>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "mylibrary/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <h2 class="page-header">Login</h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-item">
+              <label>Username</label>
+              <input type="text" name="username">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-item">
+              <label>Password</label>
+              <input type="password" name="password">
+            </div>
+        </div>
+        <div class="form-row form-row-end btn-row">
+            <button class="btn btn-primary" type="submit">Login</button>
+        </div>
+    </form>
+    <div class="login__link">Don't have account!, <a class="register-link" href="{% url 'register' %}">Register here.</a></div>
+{% endblock %}
+

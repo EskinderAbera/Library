@@ -1,0 +1,34 @@
+{% extends "mylibrary/layout.html" %} 
+{% load static %}
+
+{% block body %}
+  <h2 class="page-header">Search Books</h2>
+  <form action="{% url 'searchbooks' %}" method="get">
+      <div class="form-row">
+          <div class="form-item">
+            <label>Title</label>
+            <input type="text" name="title">
+          </div>
+      </div>
+      <div class="form-row">
+          <div class="form-item">
+            <label>Published After</label>
+            <input type="date" name="publishedAfter">
+          </div>
+          <div class="form-item">
+            <label>Published Before</label>
+            <input type="date" name="publishedBefore">
+          </div>
+        </div>
+      <div class="form-row form-row-end">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </div>       
+  </form>
+  <h2 class="page-header">Recent Added</h2>
+  <div class="book-grid book-grid-large">
+      {% for book in Books %}                   
+          <a href="{% url 'bookdetail' book.id %}"><img class="book-cover book-cover-large" src="{{ book.image.url }}" alt="connect"></a>  
+      {% endfor %} 
+  </div>                          
+{% endblock %}
+

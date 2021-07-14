@@ -1,0 +1,10 @@
+{% extends "mylibrary/layout.html"%}
+
+{% block body %}
+    <h2 class="page-header">Search Result</h2>
+        {% for author in authors %}
+            <ul>
+                <li>{{ author.first_name }} {{ author.last_name }}</li>
+            </ul>       
+        {% endfor %}
+{% endblock %}

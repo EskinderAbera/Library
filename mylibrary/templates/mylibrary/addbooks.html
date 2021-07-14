@@ -1,0 +1,53 @@
+{% extends "mylibrary/layout.html" %} 
+{% load static %}
+
+{% block body %}
+    <!-- {% if message %}
+      <div class="error-message"> {{ message }} </div>
+    {% endif %} -->
+    <h2 class="page-header">New Book</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-item">
+            <label>Title</label>
+            <input type="text" name="title">
+          </div>
+          <div class="form-item">
+            <label>Author</label>
+            <select name="author">
+              {% for author in authors %}
+                  <option value="{{ author.id}}">{{ author.first_name }} {{ author.last_name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+          
+        <div class="form-row">
+          <div class="form-item">
+            <label>Publish Date</label>
+            <input type="date" name="publishDate">
+          </div>
+          <div class="form-item">
+            <label>Page Count</label>
+            <input type="number" name="pageCount" min="1">
+          </div>
+        </div>
+          
+        <div class="form-row">
+          <div class="form-item form-item-no-grow">
+            <!-- <label>Cover</label>
+            <input type="file" class="filepond" name="image"> -->
+              {{ tform.as_p }}
+          </div>
+          <div class="form-item">
+            <label>Description</label>
+            <textarea name="description"></textarea>
+          </div>
+        </div>
+        <div class="form-row form-row-end btn-row">
+          <a class="btn btn-danger" href="{% url 'index' %}">Cancel</a>
+          <button class="btn btn-primary" type="submit">Create</button>
+        </div>
+    </form>
+{% endblock %}

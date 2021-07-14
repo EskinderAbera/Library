@@ -1,0 +1,18 @@
+{% extends "mylibrary/layout.html" %} 
+{% load static %}
+
+{% block body %}
+    <h2 class="page-header">{{ author.first_name }} {{ author.last_name }}</h2> 
+    <div class="btn-row">
+        <a class = "btn btn-primary" href="{% url 'authoredit' author.id %}"> Edit</a>
+        <a href="{% url 'deleteauthor' author.id %}"> <button class="btn btn-danger" type="submit">Delete</button> </a>
+    </div>
+    <h2 class="page-header">Book by Author </h2>
+    <div class="book-grid book-grid-large">
+        {% for book in books %}                   
+            <a href="{% url 'bookdetail' book.id %}"><img class="book-cover book-cover-large" src="{{ book.image.url }}" alt="connect"></a> 
+            {% empty %}
+            <h2 class="page-header">No Books!</h2> 
+        {% endfor %} 
+    </div>                  
+{% endblock %}

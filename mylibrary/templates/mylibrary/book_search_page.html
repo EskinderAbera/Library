@@ -1,0 +1,11 @@
+{% extends "mylibrary/layout.html"%}
+{% load static %}
+
+{% block body %}
+    <h2 class="page-header">Search Result</h2>
+        {% for book in books %}
+            <ul>
+                <li>{{ book.title }}</li>
+            </ul>       
+        {% endfor %}
+{% endblock %}

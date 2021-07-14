@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}My Library{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'mylibrary/main.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class = "container">
+            <header>
+                <nav class="header-nav">
+                    <a class="header-title" href="{% url 'index' %}">My Library</a>
+                    <ul>
+                        <!-- {% if user. %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><strong>{{ user.username }}</strong></a>
+                            </li>
+                        {% endif %} -->
+                        
+                        {% if user.is_authenticated %}
+                            <li>
+                                <a href="{% url 'index' %}">All Books</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'addbooks' %}">Add Book</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'authors' %}">Author</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'addauthor' %}">Add Author</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}">Log Out</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{% url 'login' %}">Log In</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register' %}">Register</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </header>
+            <div class="inner-container">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+    <script>
+
+    </script>
+</html>
